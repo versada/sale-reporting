@@ -142,7 +142,7 @@ class SaleOrderLine(models.Model):
     def _compute_last_date_delivered(self):
         for line in self:
             max_date = False
-            for move in line.procurement_ids.move_ids:
+            for move in line.procurement_ids.mapped('move_ids'):
                 if move.state == 'done' and \
                         move.location_dest_id.usage == "customer":
                     if move.to_refund_so:

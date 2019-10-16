@@ -10,7 +10,7 @@ class SOBackorderWizard(models.TransientModel):
 
     def action_print_report(self, data):
         data = self.env['sale.order.line'].search(
-            ['&', ('product_type', '=', 'product'),
+            ['&', ('product_type', '!=', 'service'),
              '|', ('bo_value', '!=', 0), ('uigd_value', '!=', 0)])
         return self.env['report'].with_context(
             active_ids=data.ids,
